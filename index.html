@@ -3,864 +3,674 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Biblia del Sánguche — Emprendé Hoy</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<title>La Biblia del Sánguche – COMBO Solo por Hoy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold:       #d4a843;
+    --gold-light: #f0cf7a;
+    --gold-dark:  #9a7420;
+    --brown-deep: #2a1205;
+    --brown-mid:  #3e1e08;
+    --brown-warm: #5c2e10;
+    --cream:      #f5e8c8;
+    --cream-dim:  #d6c49a;
+    --navy:       #0f1e3a;
+    --burgundy:   #4a0e0e;
+    --green-dark: #0d2b1a;
+  }
 
-:root {
-  --bg: #0A0A0A;
-  --surface: #111111;
-  --surface2: #161616;
-  --border: rgba(255,255,255,0.07);
-  --gold: #F5C842;
-  --gold2: #E8A820;
-  --amber: #FF8C00;
-  --cream: #FAF5E4;
-  --muted: rgba(250,245,228,0.45);
-  --green: #22C55E;
-  --red-pill: #FF3B30;
-  --r: 16px;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; }
 
-body {
-  background: var(--bg);
-  color: var(--cream);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
+  body {
+    background-color: var(--brown-deep);
+    color: var(--cream);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-  opacity: .5;
-}
+  /* ── TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
 
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 32px;
-  background: rgba(10,10,10,0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-logo { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; letter-spacing: -0.3px; color: var(--gold); }
-.nav-logo span { color: var(--cream); }
-.nav-cta {
-  background: var(--gold);
-  color: #0A0A0A;
-  font-family: 'Syne', sans-serif;
-  font-size: 13px;
-  font-weight: 800;
-  padding: 10px 22px;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: transform .2s, box-shadow .2s;
-  white-space: nowrap;
-}
-.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,200,66,.35); }
+  /* ── URGENCY BANNER ── */
+  .banner {
+    background: var(--gold);
+    color: var(--brown-deep);
+    text-align: center;
+    padding: 10px 20px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    position: relative; z-index: 10;
+    animation: pulse-banner 2s ease-in-out infinite;
+  }
 
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 140px 24px 80px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before, .hero::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  pointer-events: none;
-}
-.hero::before {
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(245,200,66,.18) 0%, transparent 70%);
-  top: -100px; left: 50%;
-  transform: translateX(-50%);
-}
-.hero::after {
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(255,140,0,.12) 0%, transparent 70%);
-  bottom: 0; right: -100px;
-}
+  @keyframes pulse-banner {
+    0%, 100% { background: var(--gold); }
+    50%       { background: var(--gold-light); }
+  }
 
-.live-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255,59,48,.12);
-  border: 1px solid rgba(255,59,48,.35);
-  border-radius: 100px;
-  padding: 7px 16px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #FF6B6B;
-  margin-bottom: 36px;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-  animation: fadeUp .6s ease both;
-}
-.live-dot {
-  width: 7px; height: 7px;
-  background: var(--red-pill);
-  border-radius: 50%;
-  animation: blink 1.2s ease-in-out infinite;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 60px 20px 40px;
+    z-index: 1;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,168,67,.18) 0%, transparent 70%);
+  }
 
-.hero-headline {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(42px, 8vw, 88px);
-  font-weight: 800;
-  line-height: 1.0;
-  letter-spacing: -2px;
-  margin-bottom: 24px;
-  animation: fadeUp .7s ease .1s both;
-}
-.hero-headline .line1 { display: block; color: var(--cream); }
-.hero-headline .accent {
-  display: block;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--amber) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+  .hero::after {
+    content: '';
+    display: block;
+    width: 60%;
+    max-width: 420px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto;
+  }
 
-.hero-sub {
-  font-size: clamp(16px, 2vw, 20px);
-  color: var(--muted);
-  max-width: 560px;
-  margin: 0 auto 48px;
-  font-weight: 300;
-  animation: fadeUp .7s ease .2s both;
-}
-.hero-sub strong { color: var(--cream); font-weight: 500; }
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s forwards;
+  }
 
-.book-3d {
-  position: relative;
-  width: 200px;
-  height: 280px;
-  margin: 0 auto 56px;
-  perspective: 1000px;
-  animation: fadeUp .7s ease .15s both;
-}
-.book-inner {
-  width: 100%; height: 100%;
-  transform-style: preserve-3d;
-  transform: rotateY(-20deg) rotateX(4deg);
-  animation: bookFloat 5s ease-in-out infinite;
-  position: relative;
-}
-@keyframes bookFloat {
-  0%,100%{ transform: rotateY(-20deg) rotateX(4deg) translateY(0); }
-  50%{ transform: rotateY(-18deg) rotateX(6deg) translateY(-10px); }
-}
-.book-face {
-  position: absolute;
-  width: 200px; height: 280px;
-  background: linear-gradient(160deg, #0f2744 0%, #081828 100%);
-  border-radius: 4px 12px 12px 4px;
-  border: 1.5px solid rgba(245,200,66,.5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  box-shadow: 20px 20px 60px rgba(0,0,0,.8), inset 1px 0 0 rgba(255,255,255,.05);
-  padding: 24px;
-}
-.book-face::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 18px;
-  background: linear-gradient(90deg, #040e1c, #0b1f35);
-  border-right: 1px solid rgba(245,200,66,.3);
-  border-radius: 4px 0 0 4px;
-}
-.book-glow {
-  position: absolute;
-  inset: -40px;
-  background: radial-gradient(ellipse, rgba(245,200,66,.15) 0%, transparent 70%);
-  pointer-events: none;
-  animation: bookFloat 5s ease-in-out infinite;
-}
-.book-la { font-family: 'Syne', sans-serif; font-size: 11px; letter-spacing: 5px; color: rgba(245,200,66,.7); text-transform: uppercase; }
-.book-main { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; color: var(--gold); line-height: 1; text-align: center; }
-.book-del { font-size: 10px; letter-spacing: 4px; color: rgba(245,200,66,.6); text-transform: uppercase; }
-.book-sub-t { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: var(--gold); }
-.book-emoji-big { font-size: 52px; margin-top: 8px; filter: drop-shadow(0 4px 12px rgba(245,200,66,.3)); }
-.book-orn { font-size: 10px; letter-spacing: 4px; color: rgba(245,200,66,.6); text-transform: uppercase; margin-bottom: 4px; }
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-weight: 700;
+    color: var(--gold-light);
+    text-shadow: 0 0 40px rgba(212,168,67,.5), 2px 3px 0 rgba(0,0,0,.6);
+    line-height: 1.1;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.25s forwards;
+  }
 
-.hero-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  animation: fadeUp .7s ease .3s both;
-}
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
-  color: #0A0A0A;
-  font-family: 'Syne', sans-serif;
-  font-size: 17px;
-  font-weight: 800;
-  padding: 20px 44px;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: all .3s ease;
-  letter-spacing: -0.2px;
-}
-.btn-primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 16px 48px rgba(245,200,66,.4); }
-.btn-primary .arrow { transition: transform .3s; }
-.btn-primary:hover .arrow { transform: translateX(4px); }
+  .hero-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 3vw, 1.6rem);
+    color: var(--cream-dim);
+    letter-spacing: 0.08em;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
 
-.trust-row {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  font-size: 13px;
-  color: var(--muted);
-  flex-wrap: wrap;
-  justify-content: center;
-}
+  /* ── BOOK STACK VISUAL ── */
+  .book-image-wrap {
+    position: relative;
+    display: inline-block;
+    margin: 10px auto 10px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.55s forwards;
+  }
 
-/* PROOF BAR */
-.proof-bar {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 20px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 48px;
-  flex-wrap: wrap;
-  background: var(--surface);
-  position: relative; z-index: 1;
-}
-.proof-stat { text-align: center; }
-.proof-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--gold); line-height: 1; }
-.proof-label { font-size: 12px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 1px; }
-.proof-divider { width: 1px; height: 40px; background: var(--border); }
+  .book-image-wrap img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,.7));
+    display: block;
+  }
 
-/* SECTIONS */
-section { position: relative; z-index: 1; }
-.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-.section-pad { padding: 100px 24px; }
+  /* ── ORNAMENT DIVIDER ── */
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.4rem;
+    letter-spacing: 0.5em;
+    margin: 8px 0 30px;
+    opacity: 0.75;
+  }
 
-.tag {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  background: rgba(245,200,66,.08);
-  border: 1px solid rgba(245,200,66,.2);
-  padding: 6px 16px;
-  border-radius: 100px;
-  margin-bottom: 20px;
-}
-.heading {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(32px, 5vw, 52px);
-  font-weight: 800;
-  letter-spacing: -1.5px;
-  line-height: 1.05;
-  color: var(--cream);
-  margin-bottom: 16px;
-}
-.heading em { font-style: normal; background: linear-gradient(90deg, var(--gold), var(--amber)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.subheading { font-size: 17px; color: var(--muted); font-weight: 300; max-width: 520px; line-height: 1.7; }
+  .section-rule {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 520px;
+    margin: 0 auto 36px;
+  }
+  .section-rule span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-dark), transparent); }
+  .section-rule i { color: var(--gold); font-style: normal; font-size: 1.1rem; }
 
-/* INCLUDES */
-.includes-bg {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.includes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  overflow: hidden;
-  margin-top: 56px;
-}
-.inc-card {
-  background: var(--surface2);
-  padding: 32px 28px;
-  transition: background .25s;
-  position: relative;
-  overflow: hidden;
-}
-.inc-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(245,200,66,.05) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity .3s;
-}
-.inc-card:hover { background: #1A1A1A; }
-.inc-card:hover::after { opacity: 1; }
-.inc-icon {
-  width: 48px; height: 48px;
-  border-radius: 12px;
-  background: rgba(245,200,66,.1);
-  border: 1px solid rgba(245,200,66,.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
-  margin-bottom: 18px;
-}
-.inc-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; color: var(--cream); margin-bottom: 8px; letter-spacing: -.3px; }
-.inc-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
-.inc-badge {
-  display: inline-block;
-  margin-top: 12px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--gold);
-  background: rgba(245,200,66,.1);
-  padding: 3px 10px;
-  border-radius: 100px;
-  letter-spacing: .5px;
-}
+  /* ── WHAT'S INSIDE ── */
+  section { position: relative; z-index: 1; }
 
-/* EARNINGS */
-.earnings-section {
-  background: linear-gradient(160deg, #0D0800 0%, var(--bg) 100%);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.earnings-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 100px 24px;
-}
-.earn-big {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(56px, 8vw, 96px);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -3px;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.earn-per { font-size: 18px; color: var(--muted); margin: 8px 0 28px; font-weight: 300; }
-.earn-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-.earn-list li {
-  display: flex; align-items: flex-start; gap: 12px;
-  font-size: 15px; color: var(--muted);
-}
-.earn-list li::before { content: '→'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .combo-section {
+    padding: 50px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
 
-/* TESTIMONIALS */
-.testimonials-section { background: var(--bg); }
-.testi-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 16px;
-  margin-top: 56px;
-}
-.testi-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 28px 24px;
-  transition: border-color .3s, transform .3s;
-}
-.testi-card:hover { border-color: rgba(245,200,66,.25); transform: translateY(-4px); }
-.testi-card.featured {
-  border-color: rgba(245,200,66,.3);
-  background: linear-gradient(160deg, #1A1200 0%, var(--surface) 100%);
-}
-.testi-quote {
-  font-size: 15px;
-  color: rgba(250,245,228,.8);
-  line-height: 1.7;
-  margin-bottom: 24px;
-  padding-left: 20px;
-  position: relative;
-}
-.testi-quote::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 4px; bottom: 4px;
-  width: 2px;
-  background: linear-gradient(180deg, var(--gold), var(--amber));
-  border-radius: 2px;
-}
-.testi-foot { display: flex; align-items: center; gap: 12px; }
-.testi-av {
-  width: 38px; height: 38px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold2), var(--amber));
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Syne', sans-serif;
-  font-weight: 800; font-size: 15px;
-  color: #0A0A0A; flex-shrink: 0;
-}
-.testi-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--cream); }
-.testi-src { font-size: 12px; color: var(--muted); margin-top: 1px; }
-.testi-stars { color: var(--gold); font-size: 13px; margin-bottom: 14px; letter-spacing: 2px; }
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.1rem, 3.5vw, 1.7rem);
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
 
-/* PRICE */
-.price-section { background: var(--surface); border-top: 1px solid var(--border); }
-.price-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.price-card-v2 {
-  background: var(--bg);
-  border: 1px solid rgba(245,200,66,.25);
-  border-radius: 20px;
-  padding: 40px 36px;
-  position: relative;
-  overflow: hidden;
-}
-.price-card-v2::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--gold), var(--amber));
-}
-.price-hot {
-  display: inline-block;
-  background: var(--red-pill);
-  color: white;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 5px 14px;
-  border-radius: 100px;
-  margin-bottom: 24px;
-}
-.price-was { font-size: 16px; color: var(--muted); text-decoration: line-through; margin-bottom: 4px; }
-.price-amount {
-  font-family: 'Syne', sans-serif;
-  font-size: 72px;
-  font-weight: 800;
-  letter-spacing: -3px;
-  color: var(--gold);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.price-once { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
-.price-divider { height: 1px; background: var(--border); margin: 24px 0; }
-.check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-.check-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: rgba(250,245,228,.8); }
-.check-list li .chk { color: var(--green); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-.btn-buy {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%);
-  color: #0A0A0A;
-  font-family: 'Syne', sans-serif;
-  font-size: 17px;
-  font-weight: 800;
-  padding: 20px 32px;
-  border-radius: 12px;
-  text-decoration: none;
-  transition: all .3s;
-}
-.btn-buy:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(245,200,66,.4); }
-.guarantee-row {
-  display: flex; align-items: center; gap: 10px;
-  margin-top: 18px; font-size: 13px; color: var(--muted);
-}
-.price-right { padding-top: 8px; }
-.urgency {
-  background: rgba(255,140,0,.08);
-  border: 1px solid rgba(255,140,0,.2);
-  border-radius: 12px;
-  padding: 20px 24px;
-  margin-bottom: 28px;
-}
-.urgency-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--amber); margin-bottom: 6px; }
-.urgency-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
-.delivery-card {
-  background: rgba(34,197,94,.06);
-  border: 1px solid rgba(34,197,94,.2);
-  border-radius: 12px;
-  padding: 20px 24px;
-  display: flex; gap: 14px; align-items: flex-start;
-}
-.delivery-icon { font-size: 22px; flex-shrink: 0; }
-.delivery-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
-.delivery-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .combo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 44px;
+  }
 
-footer {
-  border-top: 1px solid var(--border);
-  padding: 40px 24px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 13px;
-  position: relative; z-index: 1;
-}
-footer a { color: var(--gold); text-decoration: none; }
+  .combo-card {
+    background: linear-gradient(145deg, rgba(255,255,255,.04), rgba(0,0,0,.25));
+    border: 1px solid rgba(212,168,67,.25);
+    border-radius: 8px;
+    padding: 22px 18px;
+    text-align: left;
+    transition: transform .25s, border-color .25s, box-shadow .25s;
+    opacity: 0;
+    transform: translateY(20px);
+  }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity .7s ease, transform .7s ease;
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
+  .combo-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s, transform 0.5s, border-color .25s, box-shadow .25s;
+  }
 
-@media (max-width: 768px) {
-  nav { padding: 14px 20px; }
-  .proof-bar { gap: 28px; }
-  .proof-divider { display: none; }
-  .earnings-inner { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
-  .price-inner { grid-template-columns: 1fr; gap: 40px; }
-  .price-card-v2 { padding: 32px 24px; }
-  .trust-row { gap: 14px; }
-  .hero { padding: 120px 20px 60px; }
-}
-@media (max-width: 480px) {
-  .book-3d { width: 160px; height: 225px; }
-  .book-face { width: 160px; height: 225px; }
-  .book-main { font-size: 24px; }
-  .book-emoji-big { font-size: 38px; }
-  .includes-grid { grid-template-columns: 1fr; }
-  .testi-grid { grid-template-columns: 1fr; }
-}
+  .combo-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 8px 30px rgba(212,168,67,.15);
+  }
+
+  .combo-card.main-book {
+    border-color: var(--gold);
+    background: linear-gradient(145deg, rgba(212,168,67,.08), rgba(0,0,0,.3));
+    grid-column: 1 / -1;
+  }
+
+  .card-icon { font-size: 1.6rem; margin-bottom: 10px; }
+  .card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .card-desc {
+    font-size: 0.88rem;
+    color: var(--cream-dim);
+    line-height: 1.5;
+  }
+  .badge-main {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--brown-deep);
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* ── BENEFITS ── */
+  .benefits-section {
+    padding: 20px 20px 50px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .benefits-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .benefits-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,.03);
+    border-left: 3px solid var(--gold-dark);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .benefits-list li .icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+  .benefits-list li .text strong {
+    font-family: 'Cinzel', serif;
+    font-size: 0.88rem;
+    color: var(--gold-light);
+    display: block;
+    letter-spacing: 0.04em;
+    margin-bottom: 2px;
+  }
+  .benefits-list li .text span { font-size: 0.88rem; color: var(--cream-dim); }
+
+  /* ── PRICE / CTA ── */
+  .cta-section {
+    padding: 50px 20px 70px;
+    text-align: center;
+    background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(212,168,67,.1) 0%, transparent 70%);
+    position: relative;
+  }
+
+  .cta-section::before {
+    content: '';
+    display: block;
+    width: 80%;
+    max-width: 500px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+    margin: 0 auto 40px;
+  }
+
+  .price-tag {
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .price-old {
+    font-size: 1rem;
+    color: var(--cream-dim);
+    text-decoration: line-through;
+    opacity: 0.6;
+    margin-bottom: 4px;
+  }
+  .price-main {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2.8rem, 8vw, 4.5rem);
+    color: var(--gold-light);
+    text-shadow: 0 0 30px rgba(212,168,67,.45);
+    line-height: 1;
+  }
+  .price-note {
+    font-size: 0.85rem;
+    color: var(--cream-dim);
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+    margin-bottom: 28px;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #d4a843 0%, #f0cf7a 45%, #b8882a 100%);
+    color: var(--brown-deep);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 20px 48px;
+    border-radius: 4px;
+    box-shadow: 0 6px 30px rgba(212,168,67,.4), 0 2px 0 rgba(0,0,0,.4);
+    transition: transform .2s, box-shadow .2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+    transition: left .4s;
+  }
+
+  .cta-button:hover::before { left: 100%; }
+  .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(212,168,67,.55), 0 2px 0 rgba(0,0,0,.4);
+  }
+  .cta-button:active { transform: translateY(-1px); }
+
+  .cta-sub {
+    margin-top: 18px;
+    font-size: 0.85rem;
+    color: var(--cream-dim);
+    opacity: 0.7;
+  }
+  .cta-sub span { color: var(--gold); }
+
+  /* ── GUARANTEE ── */
+  .guarantee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+    padding: 18px 24px;
+    border: 1px solid rgba(212,168,67,.2);
+    border-radius: 8px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255,255,255,.02);
+  }
+  .guarantee .g-icon { font-size: 2rem; }
+  .guarantee .g-text strong {
+    font-family: 'Cinzel', serif;
+    font-size: 0.88rem;
+    color: var(--gold-light);
+    display: block;
+    letter-spacing: 0.04em;
+  }
+  .guarantee .g-text span { font-size: 0.82rem; color: var(--cream-dim); }
+
+  /* ── TESTIMONIALS ── */
+  .testi-section {
+    padding: 40px 20px 60px;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 30px;
+  }
+
+  .testi-card {
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(212,168,67,.15);
+    border-radius: 8px;
+    padding: 20px 18px;
+    text-align: left;
+  }
+
+  .stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 10px; }
+  .testi-text { font-style: italic; font-size: 0.9rem; color: var(--cream-dim); margin-bottom: 12px; line-height: 1.55; }
+  .testi-name { font-family: 'Cinzel', serif; font-size: 0.75rem; color: var(--gold-light); letter-spacing: 0.08em; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 30px 20px 40px;
+    border-top: 1px solid rgba(212,168,67,.15);
+    font-size: 0.78rem;
+    color: var(--cream-dim);
+    opacity: 0.5;
+    position: relative; z-index: 1;
+  }
+
+  /* ── STICKY CTA ── */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--brown-deep);
+    border-top: 1px solid rgba(212,168,67,.35);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    z-index: 100;
+    transform: translateY(100%);
+    transition: transform .4s;
+  }
+
+  .sticky-cta.show { transform: translateY(0); }
+  .sticky-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+    flex: 1;
+  }
+  .sticky-btn {
+    background: var(--gold);
+    color: var(--brown-deep);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background .2s;
+  }
+  .sticky-btn:hover { background: var(--gold-light); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 480px) {
+    .combo-card.main-book { grid-column: 1; }
+    .sticky-cta { flex-direction: column; align-items: stretch; text-align: center; }
+  }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">La <span>Biblia del Sánguche</span></div>
-  <a href="https://wa.me/543541529201?text=Hola!%20Quiero%20La%20Biblia%20del%20S%C3%A1nguche%20%F0%9F%A5%AA" class="nav-cta">Comprar ahora →</a>
-</nav>
+<!-- URGENCY BANNER -->
+<div class="banner">⚡ Oferta Especial · Solo disponible por tiempo limitado ⚡</div>
 
-<section class="hero">
-  <div class="live-badge">
-    <span class="live-dot"></span>
-    Oferta activa — Solo por hoy
+<!-- HERO -->
+<header class="hero">
+  <p class="hero-eyebrow">✦ El Kit Definitivo del Emprendedor Sanguchero ✦</p>
+  <h1 class="hero-title">Combo<br>Solo Por Hoy</h1>
+  <p class="hero-subtitle">12 guías para arrancar tu negocio de sánguches desde cero</p>
+
+  <div class="book-image-wrap">
+    <img src="https://res.cloudinary.com/dh1qqui2h/image/upload/v1775346711/IMG-20260219-WA0021_2_yoet4z.jpg" alt="La Biblia del Sánguche – Combo completo">
   </div>
+</header>
 
-  <div class="book-3d">
-    <div class="book-glow"></div>
-    <div class="book-inner">
-      <div class="book-face">
-        <span class="book-orn">✦ ✦ ✦</span>
-        <div class="book-la">La</div>
-        <div class="book-main">BIBLIA</div>
-        <div class="book-del">— del —</div>
-        <div class="book-sub-t">SÁNGUCHE</div>
-        <span class="book-emoji-big">🥪</span>
-      </div>
+<!-- ORNAMENT -->
+<div class="ornament">❧ ✦ ❧</div>
+
+<!-- WHAT'S INCLUDED -->
+<section class="combo-section">
+  <div class="section-rule"><span></span><i>✦</i><span></span></div>
+  <h2 class="section-title">Todo lo que recibís en el combo</h2>
+
+  <div class="combo-grid" id="comboGrid">
+
+    <div class="combo-card main-book">
+      <span class="badge-main">⭐ Producto Principal</span>
+      <div class="card-icon">📖</div>
+      <div class="card-name">La Biblia del Sánguche</div>
+      <div class="card-desc">La guía madre. Recetas, técnicas, armado, ingredientes clave y todo lo que necesitás para hacer sánguches que la gente no para de pedir.</div>
     </div>
+
+    <div class="combo-card">
+      <div class="card-icon">🧑‍💼</div>
+      <div class="card-name">Manual del Emprendedor Sanguchero</div>
+      <div class="card-desc">Cómo estructurar tu negocio, fijar precios, calcular costos y escalar paso a paso.</div>
+    </div>
+
+    <div class="combo-card">
+      <div class="card-icon">🏠</div>
+      <div class="card-name">Emprende desde Casa y Factura</div>
+      <div class="card-desc">Todo sobre vender desde tu domicilio de forma legal y ordenada en el mercado argentino.</div>
+    </div>
+
+    <div class="combo-card">
+      <div class="card-icon">📱</div>
+      <div class="card-name">Ideas Inspiradoras para tus Redes</div>
+      <div class="card-desc">Contenido listo para usar en Instagram y TikTok. Ideas de posts, reels y textos que convierten.</div>
+    </div>
+
+    <div class="combo-card">
+      <div class="card-icon">🍯</div>
+      <div class="card-name">Salsas Gourmet</div>
+      <div class="card-desc">Las salsas que diferencian un sánguche común de uno que la gente recuerda. Recetas exclusivas.</div>
+    </div>
+
+    <div class="combo-card">
+      <div class="card-icon">🧈</div>
+      <div class="card-name">Untables Caseros y Premium</div>
+      <div class="card-desc">Cremas, pastas y untables artesanales que agregan valor real a cada producto que vendés.</div>
+    </div>
+
+    <div class="combo-card">
+      <div class="card-icon">🥒</div>
+      <div class="card-name">Pickle's y Conservas para Sánguches</div>
+      <div class="card-desc">El toque gourmet que tus clientes van a notar. Conservas artesanales de alta rentabilidad.</div>
+    </div>
+
   </div>
+</section>
 
-  <h1 class="hero-headline">
-    <span class="line1">El sistema completo</span>
-    <span class="accent">para vender sánguches</span>
-  </h1>
-  <p class="hero-sub">
-    <strong>+100 recetas gourmet</strong> · salsas premium · costos listos · método de ventas validado por cientos de emprendedores. Todo en un PDF.
-  </p>
+<!-- BENEFITS -->
+<section class="benefits-section">
+  <div class="section-rule" style="max-width:100%;"><span></span><i>✦</i><span></span></div>
+  <h2 class="section-title" style="text-align:center; font-family:'Cinzel',serif; font-size:clamp(1rem,3.5vw,1.5rem); color:var(--gold-light); letter-spacing:.12em; text-transform:uppercase; margin-bottom:24px;">¿Por qué este combo cambia todo?</h2>
+  <ul class="benefits-list">
+    <li>
+      <span class="icon">📦</span>
+      <div class="text">
+        <strong>Entrega inmediata en formato digital</strong>
+        <span>En el momento que pagás, recibís todo en tu mail o WhatsApp. Sin esperas.</span>
+      </div>
+    </li>
+    <li>
+      <span class="icon">💰</span>
+      <div class="text">
+        <strong>Inversión mínima, retorno rápido</strong>
+        <span>Con solo vender unos pocos sánguches el primer fin de semana, ya recuperás lo invertido.</span>
+      </div>
+    </li>
+    <li>
+      <span class="icon">🚀</span>
+      <div class="text">
+        <strong>Sin experiencia previa requerida</strong>
+        <span>Está explicado paso a paso, para quien recién arranca y para quien ya vende y quiere mejorar.</span>
+      </div>
+    </li>
+    <li>
+      <span class="icon">🎯</span>
+      <div class="text">
+        <strong>Adaptado al mercado argentino</strong>
+        <span>Precios, ingredientes, canales de venta y estrategias pensadas para la Argentina real de hoy.</span>
+      </div>
+    </li>
+    <li>
+      <span class="icon">🔒</span>
+      <div class="text">
+        <strong>Pago 100% seguro por Mercado Pago</strong>
+        <span>La plataforma más confiable del país. Podés pagar con tarjeta, débito o saldo.</span>
+      </div>
+    </li>
+  </ul>
+</section>
 
-  <div class="hero-actions">
-    <a href="https://wa.me/543541529201?text=Hola!%20Quiero%20La%20Biblia%20del%20S%C3%A1nguche%20%F0%9F%A5%AA" class="btn-primary">
-      Quiero La Biblia del Sánguche <span class="arrow">→</span>
-    </a>
-    <div class="trust-row">
-      <span>✅ Garantía 7 días</span>
-      <span>⚡ Entrega inmediata</span>
-      <span>📚 Acceso de por vida</span>
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="section-rule"><span></span><i>✦</i><span></span></div>
+  <h2 class="section-title">Lo que dicen quienes ya lo tienen</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Arranqué vendiendo los fines de semana y en el primer mes recuperé la inversión multiplicada por diez."</p>
+      <div class="testi-name">— Romina G., Córdoba</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Las salsas gourmet son un juego de otro nivel. Mis clientes me piden que venda los frascos por separado."</p>
+      <div class="testi-name">— Matías L., Rosario</div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Lo del contenido para redes fue clave. No sabía qué postear y ahora tengo agenda llena cada semana."</p>
+      <div class="testi-name">— Florencia R., CABA</div>
     </div>
   </div>
 </section>
 
-<div class="proof-bar">
-  <div class="proof-stat">
-    <div class="proof-num">+500</div>
-    <div class="proof-label">Emprendedores</div>
+<!-- PRICE + CTA -->
+<section class="cta-section" id="ctaMain">
+  <div class="price-tag">
+    <div class="price-old">Valor individual: $12.000+</div>
+    <div class="price-main">$4.999</div>
+    <div class="price-note">✦ Pago único · Acceso de por vida · Descarga inmediata ✦</div>
   </div>
-  <div class="proof-divider"></div>
-  <div class="proof-stat">
-    <div class="proof-num">100+</div>
-    <div class="proof-label">Recetas gourmet</div>
-  </div>
-  <div class="proof-divider"></div>
-  <div class="proof-stat">
-    <div class="proof-num">$450K</div>
-    <div class="proof-label">Ingreso semanal posible</div>
-  </div>
-  <div class="proof-divider"></div>
-  <div class="proof-stat">
-    <div class="proof-num">7 días</div>
-    <div class="proof-label">Garantía total</div>
-  </div>
-</div>
 
-<section class="includes-bg section-pad reveal">
-  <div class="container" style="text-align:center; margin-bottom:0;">
-    <span class="tag">¿Qué incluye?</span>
-    <h2 class="heading">Todo lo que necesitás.<br><em>Sin excusas para no arrancar.</em></h2>
-    <p class="subheading" style="margin: 0 auto;">Un sistema probado, completo y listo para usar desde el primer día.</p>
-  </div>
-  <div class="container">
-    <div class="includes-grid">
-      <div class="inc-card">
-        <div class="inc-icon">📖</div>
-        <div class="inc-title">+100 Recetas Gourmet</div>
-        <div class="inc-desc">Sánguches que siempre salen perfectos. Ingredientes accesibles, resultado premium. Las recetas que hacen que el cliente vuelva.</div>
-        <span class="inc-badge">El corazón de todo</span>
-      </div>
-      <div class="inc-card">
-        <div class="inc-icon">🌶️</div>
-        <div class="inc-title">Salsas & Untables Gourmet</div>
-        <div class="inc-desc">Las 5 salsas que más venden + pestos creativos + untables caseros premium. Subí el valor de cada sánguche sin subir el costo.</div>
-        <span class="inc-badge">Diferenciador clave</span>
-      </div>
-      <div class="inc-card">
-        <div class="inc-icon">💵</div>
-        <div class="inc-title">Costos + Precios Listos</div>
-        <div class="inc-desc">Sistema de costeo ya armado. Calculás tu precio de venta en minutos y arrancás sin perder plata desde el día 1.</div>
-        <span class="inc-badge">Incluido</span>
-      </div>
-      <div class="inc-card">
-        <div class="inc-icon">📲</div>
-        <div class="inc-title">Sistema de Ventas Validado</div>
-        <div class="inc-desc">WhatsApp · Instagram · PedidosYa · Rappi. El método ya está armado y validado por cientos de emprendedores.</div>
-        <span class="inc-badge">Comprobado</span>
-      </div>
-      <div class="inc-card">
-        <div class="inc-icon">🥒</div>
-        <div class="inc-title">Pickles & Conservas</div>
-        <div class="inc-desc">Pickles y conservas caseras que elevan cualquier sánguche a nivel restaurante. El detalle que te hace memorable.</div>
-        <span class="inc-badge">Bonus</span>
-      </div>
-      <div class="inc-card">
-        <div class="inc-icon">🔐</div>
-        <div class="inc-title">Comunidad Privada</div>
-        <div class="inc-desc">Acceso exclusivo a la comunidad de emprendedores sangucheros. Apoyo real, ideas y red de contactos que potencian tu negocio.</div>
-        <span class="inc-badge">Exclusivo</span>
-      </div>
-      <div class="inc-card">
-        <div class="inc-icon">🎁</div>
-        <div class="inc-title">Bonos de Regalo</div>
-        <div class="inc-desc">Manual del Emprendedor Sanguchero + Ideas para redes sociales + Recetas de pan casero + Guía para emprender y facturar.</div>
-        <span class="inc-badge">Gratis con tu compra</span>
-      </div>
-      <div class="inc-card">
-        <div class="inc-icon">♾️</div>
-        <div class="inc-title">Acceso de Por Vida</div>
-        <div class="inc-desc">Pagás una vez. Es tuyo para siempre. Sin suscripciones ni renovaciones. Guardá el link y accedé cuando quieras.</div>
-        <span class="inc-badge">Para siempre</span>
-      </div>
+  <a class="cta-button" href="https://mpago.la/1wiEdek" target="_blank" rel="noopener">
+    🛒 &nbsp;Quiero el Combo Ahora
+  </a>
+
+  <p class="cta-sub">Pagá con tarjeta, débito o Mercado Pago · <span>Entrega instantánea</span></p>
+
+  <div class="guarantee">
+    <div class="g-icon">🛡️</div>
+    <div class="g-text">
+      <strong>Compra 100% Segura</strong>
+      <span>Procesado por Mercado Pago, la plataforma más confiable de Argentina.</span>
     </div>
   </div>
 </section>
 
-<section class="earnings-section reveal">
-  <div class="earnings-inner">
-    <div>
-      <span class="tag">Potencial real</span>
-      <div class="earn-big">+$450.000</div>
-      <p class="earn-per">por semana · método comprobado</p>
-      <a href="https://wa.me/543541529201?text=Hola!%20Quiero%20La%20Biblia%20del%20S%C3%A1nguche%20%F0%9F%A5%AA" class="btn-primary" style="display:inline-flex; margin-top:8px;">
-        Empezar ahora <span class="arrow">→</span>
-      </a>
-    </div>
-    <div>
-      <h2 class="heading" style="font-size: clamp(26px,3.5vw,38px); margin-bottom:24px;">El dinero que dejás de ganar<br>por <em>no arrancar hoy</em></h2>
-      <ul class="earn-list">
-        <li>Vendés por WhatsApp, Instagram o apps — vos elegís el canal.</li>
-        <li>El sistema de costeo te dice exactamente cuánto cobrar para ganar bien.</li>
-        <li>Con 1 sánguche vendido ya recuperás la inversión de La Biblia.</li>
-        <li>Cientos de emprendedores ya lo validaron. El modelo funciona.</li>
-        <li>No necesitás local. Empezás desde tu casa con lo que tenés.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="testimonials-section section-pad reveal">
-  <div class="container" style="text-align:center;">
-    <span class="tag">Lo que dicen ellos</span>
-    <h2 class="heading">Resultados reales.<br><em>Personas reales.</em></h2>
-  </div>
-  <div class="container">
-    <div class="testi-grid">
-      <div class="testi-card featured">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Ya voy por la mitad del curso y te vuela la cabeza. Muy sencillo y técnico a la vez — está muy nutrido de información. Lo recomiendo, es una inversión. Te llega al momento, muy buena gente.</p>
-        <div class="testi-foot">
-          <div class="testi-av">M</div>
-          <div>
-            <div class="testi-name">Mauricio Barrio</div>
-            <div class="testi-src">Facebook · Cocina Emprendedora · 20 reacciones</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Ya estoy cocinando con las recetas de la Biblia, y la verdad que son exquisitas — sabores que no estaban en mi radar para nada.</p>
-        <div class="testi-foot">
-          <div class="testi-av">S</div>
-          <div>
-            <div class="testi-name">Sergio Oscar Urgel</div>
-            <div class="testi-src">Facebook · Cocina Emprendedora</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Lo pedí anoche y lo recibí al toque. Está muy bueno — no solo para emprendimiento, también para agasajar a familiares y amigos.</p>
-        <div class="testi-foot">
-          <div class="testi-av">J</div>
-          <div>
-            <div class="testi-name">Jorge Crowe</div>
-            <div class="testi-src">Facebook · Cocina Emprendedora</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Muchas gracias, excelente material. Mis hijos me decían que estaba loca en arriesgarme así — pero acá no hay estafas, esto es material real. Bastante completito, está muy bueno.</p>
-        <div class="testi-foot">
-          <div class="testi-av">C</div>
-          <div>
-            <div class="testi-name">Compradora verificada</div>
-            <div class="testi-src">WhatsApp · Testimonio directo</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Gracias, recibí todo completo. Muy bueno y al minuto de haber pagado.</p>
-        <div class="testi-foot">
-          <div class="testi-av">C</div>
-          <div>
-            <div class="testi-name">Carina Torres</div>
-            <div class="testi-src">Facebook · Cocina Emprendedora</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Gracias por el material que me enviaron. Muy completo. La atención fue inmediata.</p>
-        <div class="testi-foot">
-          <div class="testi-av">F</div>
-          <div>
-            <div class="testi-name">Ferias Americanas</div>
-            <div class="testi-src">Facebook · 6 me gusta</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="price-section section-pad reveal">
-  <div class="container">
-    <div class="price-inner">
-      <div class="price-card-v2">
-        <span class="price-hot">🔥 Descuento especial</span>
-        <p class="price-was">Precio normal: $9.900</p>
-        <p class="price-amount">$4.900</p>
-        <p class="price-once">Pago único · Sin renovaciones</p>
-        <div class="price-divider"></div>
-        <ul class="check-list">
-          <li><span class="chk">✓</span> +100 recetas de sánguches gourmet</li>
-          <li><span class="chk">✓</span> Salsas & untables premium</li>
-          <li><span class="chk">✓</span> Sistema de costos y precios listos</li>
-          <li><span class="chk">✓</span> Método de ventas validado</li>
-          <li><span class="chk">✓</span> Pickles y conservas caseras</li>
-          <li><span class="chk">✓</span> Acceso a comunidad privada</li>
-          <li><span class="chk">✓</span> Todos los bonos de regalo</li>
-          <li><span class="chk">✓</span> Acceso de por vida</li>
-        </ul>
-        <a href="https://wa.me/543541529201?text=Hola!%20Quiero%20La%20Biblia%20del%20S%C3%A1nguche%20%F0%9F%A5%AA" class="btn-buy">
-          ✅ Comprar por $4.900
-        </a>
-        <div class="guarantee-row">
-          <span>🛡️</span>
-          Garantía de 7 días. Si no te sirve, te devolvemos la plata. Sin preguntas.
-        </div>
-      </div>
-
-      <div class="price-right">
-        <span class="tag">¿Por qué ahora?</span>
-        <h2 class="heading">El mejor momento<br>para arrancar fue <em>ayer.</em><br>El segundo mejor es hoy.</h2>
-        <p class="subheading" style="margin-bottom: 28px;">La inversión es mínima. El riesgo es cero. Y lo recuperás con el primer sánguche que vendés.</p>
-        <div class="urgency">
-          <div class="urgency-title">⏳ Precio de lanzamiento</div>
-          <div class="urgency-text">Esta oferta de $4.900 es por tiempo limitado. Cuando termine, vuelve al precio original de $9.900.</div>
-        </div>
-        <div class="delivery-card">
-          <span class="delivery-icon">⚡</span>
-          <div>
-            <div class="delivery-title">Entrega inmediata por WhatsApp</div>
-            <div class="delivery-text">Apenas confirmás el pago, te llega el PDF en minutos directo a tu WhatsApp. Sin esperas.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- FOOTER -->
 <footer>
-  <p style="margin-bottom:8px; font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--cream);">La Biblia del Sánguche</p>
-  <p>© 2025 Cocina Emprendedora · Todos los derechos reservados</p>
-  <p style="margin-top:12px;">¿Tenés dudas? Escribinos → <a href="https://wa.me/543541529201">WhatsApp</a></p>
+  <p>La Biblia del Sánguche &nbsp;·&nbsp; Producto digital · Entrega por correo electrónico</p>
+  <p style="margin-top:6px;">Al comprar aceptás los términos del producto digital. No se realizan devoluciones una vez enviado el acceso.</p>
 </footer>
 
+<!-- STICKY CTA (aparece al hacer scroll) -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-label">COMBO Solo por Hoy &nbsp;·&nbsp; 12 Guías Completas</div>
+  <a class="sticky-btn" href="https://mpago.la/1wiEdek" target="_blank" rel="noopener">Comprar $4.999</a>
+</div>
+
 <script>
-const reveals = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-}, { threshold: 0.08 });
-reveals.forEach(r => obs.observe(r));
+  // Sticky CTA on scroll
+  const stickyCta = document.getElementById('stickyCta');
+  const ctaMain = document.getElementById('ctaMain');
+  window.addEventListener('scroll', () => {
+    const rect = ctaMain.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.3) {
+      stickyCta.classList.remove('show');
+    } else if (window.scrollY > 400) {
+      stickyCta.classList.add('show');
+    }
+  });
+
+  // Intersection Observer for combo cards
+  const cards = document.querySelectorAll('.combo-card');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  cards.forEach(c => obs.observe(c));
 </script>
 </body>
 </html>
