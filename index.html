@@ -49,19 +49,101 @@
     background: var(--gold);
     color: var(--brown-deep);
     text-align: center;
-    padding: 10px 20px;
+    padding: 0;
     font-family: 'Cinzel', serif;
     font-weight: 700;
-    font-size: 0.85rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     position: relative; z-index: 10;
+  }
+
+  .banner-top {
+    font-size: 0.8rem;
+    padding: 8px 20px 4px;
     animation: pulse-banner 2s ease-in-out infinite;
   }
 
   @keyframes pulse-banner {
     0%, 100% { background: var(--gold); }
     50%       { background: var(--gold-light); }
+  }
+
+  /* ── COUNTDOWN ── */
+  .countdown-bar {
+    background: var(--brown-deep);
+    border-top: 1px solid rgba(212,168,67,.4);
+    border-bottom: 1px solid rgba(212,168,67,.4);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .countdown-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    color: var(--gold-light);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .countdown-digits {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .digit-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .digit-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.6rem;
+    color: var(--gold-light);
+    background: rgba(212,168,67,.12);
+    border: 1px solid rgba(212,168,67,.35);
+    border-radius: 4px;
+    min-width: 52px;
+    text-align: center;
+    line-height: 1;
+    padding: 6px 8px;
+    text-shadow: 0 0 20px rgba(212,168,67,.5);
+    transition: color .3s;
+  }
+
+  .digit-num.flash {
+    color: #fff;
+    text-shadow: 0 0 30px rgba(240,207,122,.9);
+  }
+
+  .digit-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    color: var(--gold-dark);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .digit-sep {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.4rem;
+    color: var(--gold-dark);
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+
+  .countdown-expired {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    color: #c0392b;
+    letter-spacing: 0.1em;
+    animation: pulse-banner 1s ease-in-out infinite;
   }
 
   /* ── HERO ── */
@@ -206,6 +288,35 @@
     border-color: var(--gold);
     background: linear-gradient(145deg, rgba(212,168,67,.08), rgba(0,0,0,.3));
     grid-column: 1 / -1;
+  }
+
+  /* ── CARD "Y MUCHO MÁS" ── */
+  .combo-card.more-card {
+    grid-column: 1 / -1;
+    background: linear-gradient(145deg, rgba(212,168,67,.05), rgba(0,0,0,.2));
+    border: 1px dashed rgba(212,168,67,.4);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 24px;
+  }
+
+  .more-card-content { flex: 1; }
+  .more-card-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .more-tag {
+    background: rgba(212,168,67,.12);
+    border: 1px solid rgba(212,168,67,.25);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    color: var(--cream-dim);
+    letter-spacing: 0.04em;
   }
 
   .card-icon { font-size: 1.6rem; margin-bottom: 10px; }
@@ -470,6 +581,7 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 480px) {
     .combo-card.main-book { grid-column: 1; }
+    .combo-card.more-card { grid-column: 1; flex-direction: column; }
     .sticky-cta { flex-direction: column; align-items: stretch; text-align: center; }
   }
 </style>
@@ -477,7 +589,23 @@
 <body>
 
 <!-- URGENCY BANNER -->
-<div class="banner">⚡ Oferta Especial · Solo disponible por tiempo limitado ⚡</div>
+<div class="banner">
+  <div class="banner-top">⚡ Oferta Especial · Solo disponible por tiempo limitado ⚡</div>
+  <div class="countdown-bar">
+    <div class="countdown-label">⏳ La oferta vence en:</div>
+    <div class="countdown-digits" id="countdownDigits">
+      <div class="digit-block">
+        <div class="digit-num" id="cdMin">10</div>
+        <div class="digit-label">min</div>
+      </div>
+      <div class="digit-sep">:</div>
+      <div class="digit-block">
+        <div class="digit-num" id="cdSec">00</div>
+        <div class="digit-label">seg</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- HERO -->
 <header class="hero">
@@ -541,6 +669,24 @@
       <div class="card-icon">🥒</div>
       <div class="card-name">Pickle's y Conservas para Sánguches</div>
       <div class="card-desc">El toque gourmet que tus clientes van a notar. Conservas artesanales de alta rentabilidad.</div>
+    </div>
+
+    <!-- CARD "Y MUCHO MÁS" -->
+    <div class="combo-card more-card">
+      <div class="card-icon" style="font-size:2rem; flex-shrink:0;">✨</div>
+      <div class="more-card-content">
+        <div class="card-name">Y muchísimo más incluido en el combo</div>
+        <div class="card-desc">Además de todo lo anterior, el combo incluye bonos, guías complementarias y recursos extra que siguen sumando valor:</div>
+        <div class="more-card-list">
+          <span class="more-tag">🍞 Guía de panes artesanales</span>
+          <span class="more-tag">📊 Planilla de costos y precios</span>
+          <span class="more-tag">🎁 Ideas para packaging y presentación</span>
+          <span class="more-tag">📅 Calendario de publicaciones</span>
+          <span class="more-tag">🔥 Recetas de temporada</span>
+          <span class="more-tag">💬 Textos de venta listos para usar</span>
+          <span class="more-tag">+ sorpresas exclusivas</span>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -648,7 +794,49 @@
 </div>
 
 <script>
-  // Sticky CTA on scroll
+  // ── COUNTDOWN TIMER (10 minutos) ──
+  (function() {
+    const DURATION = 10 * 60; // segundos
+    const KEY = 'sanguche_countdown_end';
+
+    // Si ya existe una sesión guardada, recuperarla; si no, crear una nueva
+    let endTime = parseInt(sessionStorage.getItem(KEY) || '0', 10);
+    if (!endTime || endTime < Date.now()) {
+      endTime = Date.now() + DURATION * 1000;
+      sessionStorage.setItem(KEY, endTime);
+    }
+
+    const elMin = document.getElementById('cdMin');
+    const elSec = document.getElementById('cdSec');
+    const digits = document.getElementById('countdownDigits');
+
+    function flash(el) {
+      el.classList.add('flash');
+      setTimeout(() => el.classList.remove('flash'), 300);
+    }
+
+    function tick() {
+      const remaining = Math.max(0, Math.floor((endTime - Date.now()) / 1000));
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+
+      const newMin = String(m).padStart(2, '0');
+      const newSec = String(s).padStart(2, '0');
+
+      if (elMin.textContent !== newMin) { elMin.textContent = newMin; flash(elMin); }
+      if (elSec.textContent !== newSec) { elSec.textContent = newSec; flash(elSec); }
+
+      if (remaining <= 0) {
+        clearInterval(timer);
+        digits.innerHTML = '<span class="countdown-expired">⚠️ ¡Oferta vencida! Consultá disponibilidad</span>';
+      }
+    }
+
+    tick();
+    const timer = setInterval(tick, 1000);
+  })();
+
+  // ── STICKY CTA on scroll ──
   const stickyCta = document.getElementById('stickyCta');
   const ctaMain = document.getElementById('ctaMain');
   window.addEventListener('scroll', () => {
@@ -660,7 +848,7 @@
     }
   });
 
-  // Intersection Observer for combo cards
+  // ── Intersection Observer for combo cards ──
   const cards = document.querySelectorAll('.combo-card');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
